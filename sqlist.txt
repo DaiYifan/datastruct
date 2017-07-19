@@ -1,1 +1,71 @@
-sqlist代码
+/*静态结构*/
+#define MaxSize 50
+typedef struct 
+{
+	ElemType data[MaxSize]; 	//定义顺序表的元素
+	int length; 	            //顺序表的当前长度
+}SqList;
+
+/*动态结构*/
+#define InitSize 100
+typedef struct 
+{
+	ElemType *data;  //动态指针
+	int MaxSize,length;  //数组的最大容量和当前个数
+}SeqList;
+
+/*insert*/
+bool ListInsert(SqList &L,int i,ElemType e){
+	if(i<1||i>L.length+1)
+		return false;
+	if(L.length>=MaxSize)
+		return false;
+	for(int j=L.length;j>=i;j--)
+		L.data[j]=L.data[j-1];
+	L.data[i-1]=e;
+	L.length++;
+	return true;
+}
+
+/*delete*/
+bool ListDelete(SqList &L,int i,int &e){
+	if(i<1||i>L.length)
+		return false;
+	e=L.data[i-1];
+	for(int j=i-1;j<l.length-1;j++)
+		data[j]=data[j+1];
+	L.length--;
+	return true;
+}
+
+/*search*/
+int LocateElem(SqList L,ElemType e){
+	int i;
+	for(i=0;i<L.length;i++)
+		if(data[i]==e)
+			return i+1;
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
