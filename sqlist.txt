@@ -48,6 +48,155 @@ int LocateElem(SqList L,ElemType e){
 	return 0;
 }
 
+/*018-1*/
+bool Del_Min(SqList &L,ElemType &Value){
+	if(L.length==0)
+	{
+		return false;
+	}
+	Value=L.data[0];
+	int pos=0;
+	for(int i=1;i<L.length;i++)
+		if(L.data[i]<Value){
+			Value=L.data[i];
+			pos=i;
+		}
+	L.data[pos]=L.data[L.length-1];
+	L.length--;
+	return true;
+}
+
+/*018-2*/
+void Reverse(SqList &L){
+	ElemType temp;
+	for(i=0;i<L.length/2;i++){
+		temp=L.data[i];
+		L.data[i]=L.data[L.length-1-i];
+		L.data[L.length-1-i]=temp;
+	}
+}
+
+/*018-3*/
+void del_x(SeqList &L,ElemType x){
+	int k=0;
+	for(int i=1;i<L.length-1;i++){
+		if (L.data[i]==x)
+		{
+			k++;
+		}
+		else
+		{
+            data[i-k]=data[i];
+		}
+	}
+	L.length=L.length-k;
+}
+
+/*018-4*/
+bool del_st(SqList &L,ElemType s,ElemType t){
+	if(s>=t||L.length==0)
+		return false;
+	if(L.data[s]>L.data[L.length-1]||L.data[t]<L.data[0])
+		return false;
+	for(int i=0;i<L.length;i++)
+		if(L.data[i]==s)
+			break;
+	for(int j=i;j<L.length;j++)
+		if(L.data[j]==t)
+			break;
+	for(;j<L.length;j++)
+	{
+		L.data[i]=L.data[j];
+		i++;
+	}
+    L.length=i;
+    return true;
+}
+
+/*018-5*/
+bool del_st2(SqList &L,ElemType s,ElemType t){
+	if(s>=t||L.length==0)
+		return false;
+	if(L.data[s]>L.data[L.length-1]||L.data[t]<L.data[0])
+		return false;
+	int k=0;
+    for(int i=0;i<L.length;i++)
+    {
+    	if(L.data[i]>=s&&L.data[i]<=t)
+    	{
+    		k++;
+    	}
+    	else
+    	{
+    		L.data[i-k]=L.data[i];
+    	}
+    }
+    L.length=L.length-k;
+    return true;
+}
+
+/*018-6*/
+void del_re(SqList &L){
+	int k=0;
+	for(int i=1;i<L.length;i++)
+	{
+		if(L.data[i-1]==L.data[i])
+		{
+    		k++;
+		}
+		else
+		{
+			L.data[i-k]=L.data[i];
+		}
+	}
+	L.length=L.length-k;
+}
+
+/*018-7*/
+bool Merge(SqList A,SqList B,SqList &C){
+	int i=0,j=0,k=0;
+	if(A.length+B.length>C.length)
+		return false;
+	while(i<A.length&&j<B.length){
+		if(A.data[i]>=B.data[j])
+		{
+			C.data[k++]=B.data[j++];
+		}
+		else
+		{
+			C.data[k++]=A.data[i++];
+		}
+	}
+	while(i<A.length){
+		C.data[k++]=A.data[i++];
+	}
+	while(i<B.length){
+		C.data[k++]=B.data[j++];
+	}
+	C.length=k;
+	return true;
+}
+
+/*-18-8*/
+typedef int DataType;
+void Rreverse(DataType A[],int a,int b,int size){
+	if(a>=b||b>size)
+		return;
+	int mid=(b+a)/2;
+	DataType temp;
+	for(int i=0;i<mid;i++){
+		temp=A[a+i];
+ 		A[a+i]=B[b-i];
+        B[b-i]=temp;
+	}
+}
+void Reverse_main(DataType A[],int n;int m;int size){
+	Reverse(A[],0,m+n-1,size);
+	Reverse(A[],0,n-1,size);
+	Reverse(A[],n,n+m-1,size);
+}
+
+
 
 
 
