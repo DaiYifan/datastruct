@@ -1,0 +1,87 @@
+二叉树三种递归遍历：
+/*先序遍历*/
+void PreOder(Bitree T){
+	if(T!=NULL){
+		visit(T);
+		PreOder(T->lchild);
+		PreOder(T->rchild);
+	}
+}
+/*中序遍历*/
+void InOder(Bitree T){
+	if(T!=NULL){
+		InOder(T->lchild);
+		visit(T);
+		InOder(T->rchild);
+	}
+}
+/*后序遍历*/
+void PostOder(Bitree T){
+	if(T!=NULL){
+		PostOder(T->lchild);
+		PostOder(T->rchild);
+		visit(T);
+	}
+}
+三种非递归遍历：
+/*先序遍历*/
+void PreOder2(Bitree T){
+	InitStack(S);Bitree p=T;//初始化栈，设置遍历指针
+	while(p||!IsEmpty(S)){
+		if(p){
+			visit(p);
+			Push(S,p);
+			p=p->lchild;
+		}
+		else{
+			Pop(S,p);
+			p=p->rchild;
+		}
+	}
+}
+/*中序遍历*/
+void InOder2(Bitree T){
+	InitStack(S);Bitree p=T;
+	while(P||!IsEmpty(S)){
+		if (p)
+		{
+			Push(S,p);
+			p=p->lchild;
+		}
+		else{
+			Pop(S,p);
+			visit(p);
+			p=p->rchild;
+		}
+	}
+}
+/*后序遍历*/
+void LevelOrder(Bitree T){
+	InitStack(S);Bitree p=T;
+	Bitree lastvisit=NULL;
+	
+	while(p||!IsEmpty(S)){
+		if(p){
+			Push(S,p);
+			p=p->lchild;
+		}
+		else{
+			Pop(S,p);
+			if(p->rchild == NULL||p->rchild == lastvisit)
+				{
+					visit(p);
+					lastvisit=p;
+				}
+
+			else{
+				Push(S,p);
+				p = p->rchild;
+				if(p){
+					Push(S,p);
+					p=p->lchild;
+				}
+			}
+		}
+	}
+}
+
